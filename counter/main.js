@@ -1,5 +1,6 @@
 "use strict";
 
+// Reducer
 const counter = (state = 0, action) => {
   switch (action.type) {
     case "INCREMENT":
@@ -10,11 +11,21 @@ const counter = (state = 0, action) => {
   return state;
 };
 
+// Store
 const { createStore } = Redux;
 const store = createStore(counter);
 
-store.subscribe(() => console.log("Disparou uma ação!", store.getState()));
+// Elements HTML
+const $counter = document.querySelector('[data-js="counter"]');
+const $decrement = document.querySelector('[data-js="decrement"]');
+const $increment = document.querySelector('[data-js="increment"]');
 
-store.dispatch({ type: "INCREMENT" });
-store.dispatch({ type: "INCREMENT" });
-store.dispatch({ type: "DECREMENT" });
+// Functions decrement and increment
+const decrement = () => store.dispatch({ type: "DECREMENT" });
+const increment = () => store.dispatch({ type: "INCREMENT" });
+
+$decrement.addEventListener("click", decrement, false);
+$increment.addEventListener("click", increment, false);
+
+// Result of actions
+store.subscribe(() => ($counter.textContent = store.getState()));
