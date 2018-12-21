@@ -10,11 +10,11 @@ const counter = (state = 0, action) => {
   return state;
 };
 
-console.assert(counter(0, { type: "INCREMENT" }) === 1);
-console.assert(counter(1, { type: "INCREMENT" }) === 2);
+const { createStore } = Redux;
+const store = createStore(counter);
 
-console.assert(counter(2, { type: "DECREMENT" }) === 1);
-console.assert(counter(3, { type: "DECREMENT" }) === 2);
+store.subscribe(() => console.log("Disparou uma ação!", store.getState()));
 
-console.assert(counter(3, { type: "SOMETHING" }) === 3);
-console.assert(counter(undefined, {}) === 0);
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "DECREMENT" });
