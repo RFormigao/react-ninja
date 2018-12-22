@@ -3,8 +3,8 @@
 import React from "react";
 import Counter from "components/counter";
 
-const App = () => {
-  return <Counter />;
+const App = ({ store }) => {
+  return <Counter store={store} />;
 };
 
 export default App;
