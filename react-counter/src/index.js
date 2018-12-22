@@ -3,6 +3,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
+import { Provider } from "react-redux";
 import { createStore } from "redux";
 import App from "./app";
 
@@ -21,7 +22,9 @@ const store = createStore(counter);
 const renderApp = NextApp => {
   render(
     <AppContainer>
-      <NextApp store={store} />
+      <Provider store={store}>
+        <NextApp />
+      </Provider>
     </AppContainer>,
     document.querySelector('[data-js="app"]')
   );
