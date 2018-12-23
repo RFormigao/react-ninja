@@ -1,26 +1,22 @@
 "use strict";
 
-export const ADD_COUNTER = "ADD_COUNTER";
-export const REMOVE_COUNTER = "REMOVE_COUNTER";
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
-
+import { ADD_COUNTER, REMOVE_COUNTER, INCREMENT, DECREMENT } from "./actions";
 export const initialState = [];
 
 const Counters = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_COUNTER":
+    case ADD_COUNTER:
       return state.concat(0);
 
-    case "REMOVE_COUNTER":
+    case REMOVE_COUNTER:
       return state.filter((_, index) => index !== action.index);
 
-    case "INCREMENT":
+    case INCREMENT:
       return state.map((counter, index) =>
         index === action.index ? counter + 1 : counter
       );
 
-    case "DECREMENT":
+    case DECREMENT:
       return state.map((counter, index) =>
         index === action.index ? counter - 1 : counter
       );

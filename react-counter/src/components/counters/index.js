@@ -4,11 +4,11 @@ import React from "react";
 import { connect } from "react-redux";
 import Counter from "components/counter";
 import {
-  ADD_COUNTER,
-  REMOVE_COUNTER,
-  INCREMENT,
-  DECREMENT
-} from "reducers/counters";
+  addCounter,
+  removeCounter,
+  increment,
+  decrement
+} from "reducers/counters/action-creators";
 
 const Counters = ({
   counters,
@@ -42,10 +42,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispath => ({
-  addCounter: () => dispath({ type: ADD_COUNTER }),
-  removeCounter: index => () => dispath({ type: REMOVE_COUNTER, index }),
-  increment: index => () => dispath({ type: INCREMENT, index }),
-  decrement: index => () => dispath({ type: DECREMENT, index })
+  addCounter: () => dispath(addCounter()),
+  removeCounter: index => () => dispath(removeCounter(index)),
+  increment: index => () => dispath(increment(index)),
+  decrement: index => () => dispath(decrement(index))
 });
 
 export default connect(
