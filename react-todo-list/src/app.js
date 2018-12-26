@@ -1,10 +1,19 @@
 "use strict";
 
 import React from "react";
+import { connect } from "react-redux";
 
-const App = () => (
+import { addTodo } from "reducers/todos/action-creators";
+
+const App = ({ todos, handleAddTodo }) => (
   <div>
-    <input type="text" />
+    {console.log(todos)}
+    <form onSubmit={handleAddTodo}>
+      <input type="text" name="todo" />
+      <br />
+      <br />
+      <button type="submit">Adicionar</button>
+    </form>
     <ul>
       <li style={{ textDecorationLine: "line-through" }}>Item 1</li>
       <li>Item 2</li>
@@ -12,11 +21,25 @@ const App = () => (
       <li>Item 4</li>
       <li>Item 5</li>
     </ul>
-
     <div>
       <h3>Mostrar</h3>
       <span>Todos</span> | <a href="">Finalizados</a> | <a href="">A fazer</a>
     </div>
   </div>
 );
-export default App;
+
+const mapStateToProps = state => ({
+  todos: state
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleAddTodo: e => {
+    e.preventDefault();
+    dispatch(addTodo(e.target.todo.value));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
