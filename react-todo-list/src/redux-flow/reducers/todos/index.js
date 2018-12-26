@@ -2,7 +2,9 @@
 
 import { TOGGLE_TODO, ADD_TODO } from "./actions";
 
-const todos = (state = [], action) => {
+export const initalState = [];
+
+const todos = (state = initalState, action) => {
   switch (action.type) {
     case ADD_TODO:
       return state.concat({
@@ -23,6 +25,8 @@ const todos = (state = [], action) => {
         };
       });
   }
+
+  return state;
 };
 
 export default todos;
