@@ -6,7 +6,7 @@ import { AppContainer } from "react-hot-loader";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import App from "./app";
-import reducer from "reducers/todos";
+import reducer from "reducers";
 
 const store = createStore(reducer);
 
