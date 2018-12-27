@@ -8,7 +8,7 @@ import FilterLink from "./filter-link";
 
 const Filter = ({ activeFilter, handleFilter }) => (
   <div>
-    <h3>Mostrar</h3>
+    <h4>Mostrar</h4>
     {filterItems.map(item => (
       <FilterLink
         key={item.action}

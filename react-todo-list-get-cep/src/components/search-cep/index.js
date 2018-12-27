@@ -4,12 +4,13 @@ import React from "react";
 
 const SearchCep = () => (
   <div>
+    <h2>Busca CEP</h2>
     <form>
       <input type="text" name="cep" />
       <button type="submit">Buscar Endereço</button>
     </form>
 
-    <table style={{ border: "1px solid black" }}>
+    <table>
       <thead>
         <tr>
           <th>CEP</th>

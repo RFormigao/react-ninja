@@ -6,6 +6,7 @@ import { addTodo } from "reducers/todos/action-creators";
 
 const Form = ({ handleAddTodo }) => (
   <form onSubmit={handleAddTodo}>
+    <h2>Todo List</h2>
     <input type="text" name="todo" />
     <button type="submit">Adicionar</button>
   </form>
