@@ -1,36 +1,36 @@
 "use strict";
 
-import React from "react";
+import React, { PureComponent } from "react";
+import SearchCep from "./search-cep";
+import ajax from "@fdaciuk/ajax";
 
-const SearchCep = () => (
-  <div>
-    <h2>Busca CEP</h2>
-    <form>
-      <input type="text" name="cep" />
-      <button type="submit">Buscar Endereço</button>
-    </form>
+class SearchCepContainer extends PureComponent {
+  state = {
+    address: "",
+    city: "",
+    code: "",
+    district: "",
+    state: "",
+    status: 1,
+    isFetching: false
+  };
 
-    <table>
-      <thead>
-        <tr>
-          <th>CEP</th>
-          <th>Endereço</th>
-          <th>Bairro</th>
-          <th>Cidade</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>17204670</td>
-          <td>Deolindo de Oliveira e Souza</td>
-          <td>Jardim Sanzovo</td>
-          <td>Jau</td>
-          <td>SP</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-);
+  handleSubmit = async e => {
+    e.preventDefault();
+    this.setState({ isFetching: true });
 
-export default SearchCep;
+    const cep = e.target.cep.value;
+    const response = await ajax().get(
+      `http://apps.widenet.com.br/busca-cep/api/cep.json?code=${cep}`
+    );
+
+    this.setState({ isFetching: false });
+    this.setState(response);
+  };
+
+  render() {
+    return <SearchCep {...this.state} handleSubmit={this.handleSubmit} />;
+  }
+}
+
+export default SearchCepContainer;
