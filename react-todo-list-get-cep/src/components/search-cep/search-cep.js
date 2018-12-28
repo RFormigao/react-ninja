@@ -21,8 +21,8 @@ const SearchCep = ({
       </button>
     </form>
 
+    {status === undefined && <div>Nenhuma busca realizada ainda...</div>}
     {status === 0 && <div>CEP não encontrado</div>}
-
     {status === 1 && (
       <table>
         <thead>

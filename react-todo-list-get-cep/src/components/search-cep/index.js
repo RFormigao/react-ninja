@@ -11,7 +11,7 @@ class SearchCepContainer extends PureComponent {
     code: "",
     district: "",
     state: "",
-    status: 1,
+    status: undefined,
     isFetching: false
   };
 
