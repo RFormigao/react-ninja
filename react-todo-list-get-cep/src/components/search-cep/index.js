@@ -21,7 +21,7 @@ class SearchCepContainer extends PureComponent {
     );
 
     this.setState({ isFetching: false });
-    this.props.dispatch(updateAddress(response));
+    this.props.updateAddress(response);
   };
 
   render() {
@@ -36,11 +36,12 @@ class SearchCepContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  address: state.address,
-  city: state.city,
-  code: state.code,
-  district: state.district,
-  state: state.stae
+  address: state.address
 });
 
-export default connect(mapStateToProps)(SearchCepContainer);
+const mapDispatchToProps = { updateAddress };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchCepContainer);
