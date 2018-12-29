@@ -3,9 +3,7 @@
 import { TOGGLE_TODO, ADD_TODO } from "./actions";
 import createReducer from "../create-reducer";
 
-export const initalState = [];
-
-const todos = createReducer(initalState, {
+const todos = createReducer([], {
   [ADD_TODO]: (state, action) =>
     state.concat({
       id: action.payload.id,
