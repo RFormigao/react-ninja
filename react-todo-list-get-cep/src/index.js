@@ -10,6 +10,12 @@ import reducer from "reducers";
 
 const store = createStore(reducer);
 
+console.log(store.getState());
+
+store.subscribe(() => {
+  console.log(store.getState());
+});
+
 const renderApp = NextApp => {
   render(
     <AppContainer>

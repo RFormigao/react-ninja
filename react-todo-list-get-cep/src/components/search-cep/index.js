@@ -1,17 +1,13 @@
 "use strict";
 
 import React, { PureComponent } from "react";
-import SearchCep from "./search-cep";
+import { connect } from "react-redux";
 import ajax from "@fdaciuk/ajax";
+import SearchCep from "./search-cep";
+import { updateAddress } from "reducers/address/action-creators";
 
 class SearchCepContainer extends PureComponent {
   state = {
-    address: "",
-    city: "",
-    code: "",
-    district: "",
-    state: "",
-    status: undefined,
     isFetching: false
   };
 
@@ -25,12 +21,26 @@ class SearchCepContainer extends PureComponent {
     );
 
     this.setState({ isFetching: false });
-    this.setState(response);
+    this.props.dispatch(updateAddress(response));
   };
 
   render() {
-    return <SearchCep {...this.state} handleSubmit={this.handleSubmit} />;
+    return (
+      <SearchCep
+        {...this.state}
+        {...this.props.address}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
-export default SearchCepContainer;
+const mapStateToProps = state => ({
+  address: state.address,
+  city: state.city,
+  code: state.code,
+  district: state.district,
+  state: state.stae
+});
+
+export default connect(mapStateToProps)(SearchCepContainer);
