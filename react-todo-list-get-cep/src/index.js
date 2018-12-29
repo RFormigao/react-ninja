@@ -9,12 +9,12 @@ import App from "./app";
 import reducer from "reducers";
 
 const store = createStore(reducer);
-
-console.log(store.getState());
-
-store.subscribe(() => {
+const renderState = () => {
   console.log(store.getState());
-});
+};
+
+store.subscribe(renderState);
+renderState();
 
 const renderApp = NextApp => {
   render(
@@ -33,5 +33,10 @@ if (module.hot) {
   module.hot.accept("./app", () => {
     const NextApp = require("./app").default;
     renderApp(NextApp);
+  });
+
+  module.hot.accept("reducers", () => {
+    const nextReducer = require("reducers").default;
+    store.replaceReducer(nextReducer);
   });
 }
