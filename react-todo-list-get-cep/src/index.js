@@ -3,12 +3,42 @@
 import React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import App from "./app";
 import reducer from "reducers";
 
-const store = createStore(reducer);
+const logger = ({ dispath, getState }) => next => action => {
+  console.log("LOGGER::will dispatch", action);
+  const nextAction = next(action);
+  console.log("LOGGER::next action", nextAction);
+  return nextAction;
+};
+
+const thunk = ({ dispatch, getState }) => next => action => {
+  if (typeof action === "function") {
+    return action(dispatch);
+  }
+  return next(action);
+};
+
+const store = createStore(reducer, applyMiddleware(logger, thunk));
+
+store.dispatch(lazyAction());
+function lazyAction() {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch({
+        type: "todos:ADD_TODO",
+        payload: {
+          text: "Lazy Action",
+          id: "123"
+        }
+      });
+    }, 2000);
+  };
+}
+
 const renderState = () => {
   console.log(store.getState());
 };
