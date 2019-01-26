@@ -4,20 +4,21 @@ import { expect } from "chai";
 import deepFreeze from "deep-freeze";
 
 import address from "./index";
-import { UPDATE_ADDRESS } from "./actions";
+import { SUCCESS } from "./actions";
 
-it("should action UPDATE_ADDRESS update address", () => {
+it("should action SUCCESS update address", () => {
   const before = deepFreeze({
     address: "",
     city: "",
     code: "",
     district: "",
     state: "",
-    status: undefined
+    status: undefined,
+    isFetching: true
   });
 
   const action = deepFreeze({
-    type: UPDATE_ADDRESS,
+    type: SUCCESS,
     payload: {
       address: "Rua Domingos Moyana",
       city: "Jaú",
@@ -34,7 +35,8 @@ it("should action UPDATE_ADDRESS update address", () => {
     code: "17204-670",
     district: "Jardim Santa Helena",
     state: "SP",
-    status: 1
+    status: 1,
+    isFetching: false
   };
 
   expect(address(before, action)).to.be.deep.equal(after);

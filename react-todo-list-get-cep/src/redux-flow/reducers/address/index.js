@@ -1,19 +1,21 @@
-'use strict'
+"use strict";
 
-import createReducer from '../create-reducer'
-import { UPDATE_ADDRESS } from './actions'
+import createReducer from "../create-reducer";
+import { FETCHING, SUCCESS } from "./actions";
 
 const initialState = {
-  address: '',
-  city: '',
-  code: '',
-  district: '',
-  state: '',
-  status: undefined
-}
+  address: "",
+  city: "",
+  code: "",
+  district: "",
+  state: "",
+  status: undefined,
+  isFetching: false
+};
 
 const address = createReducer(initialState, {
-  [UPDATE_ADDRESS]: (_, action) => action.payload
-})
+  [FETCHING]: (state, _) => ({ ...state, isFetching: true }),
+  [SUCCESS]: (_, action) => ({ ...action.payload, isFetching: false })
+});
 
-export default address
+export default address;

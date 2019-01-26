@@ -1,47 +1,65 @@
 "use strict";
 
-import React, { PureComponent } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import ajax from "@fdaciuk/ajax";
-import SearchCep from "./search-cep";
-import { updateAddress } from "reducers/address/action-creators";
+import { fetchAddress } from "reducers/address/action-creators";
 
-class SearchCepContainer extends PureComponent {
-  state = {
-    isFetching: false
-  };
+export const SearchCep = ({
+  address,
+  city,
+  code,
+  district,
+  state,
+  status,
+  isFetching,
+  handleSubmit
+}) => (
+  <div>
+    <h2>Busca CEP</h2>
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="cep" />
+      <button type="submit" disabled={isFetching}>
+        {isFetching ? "Buscando..." : "Buscar Endereço"}
+      </button>
+    </form>
 
-  handleSubmit = async e => {
+    {status === undefined && <div>Nenhuma busca realizada ainda...</div>}
+    {status === 0 && <div>CEP não encontrado</div>}
+    {status === 1 && (
+      <table>
+        <thead>
+          <tr>
+            <th>CEP</th>
+            <th>Endereço</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{code}</td>
+            <td>{address}</td>
+            <td>{district}</td>
+            <td>{city}</td>
+            <td>{state}</td>
+          </tr>
+        </tbody>
+      </table>
+    )}
+  </div>
+);
+
+const mapStateToProps = state => state.address;
+
+const mapDispatchToProps = dispatch => ({
+  handleSubmit: e => {
     e.preventDefault();
-    this.setState({ isFetching: true });
-
-    const cep = e.target.cep.value;
-    const response = await ajax().get(
-      `http://apps.widenet.com.br/busca-cep/api/cep.json?code=${cep}`
-    );
-
-    this.setState({ isFetching: false });
-    this.props.updateAddress(response);
-  };
-
-  render() {
-    return (
-      <SearchCep
-        {...this.state}
-        {...this.props.address}
-        handleSubmit={this.handleSubmit}
-      />
-    );
+    dispatch(fetchAddress(e.target.cep.value));
   }
-}
-
-const mapStateToProps = state => ({
-  address: state.address
 });
-
-const mapDispatchToProps = { updateAddress };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchCepContainer);
+)(SearchCep);
