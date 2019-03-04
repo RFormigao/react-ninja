@@ -2,10 +2,11 @@
 
 import React, { Fragment } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import Play from "components/play";
 
 import "normalize.css";
 import "milligram";
+
+import Videoslist from "components/videos-list";
 
 const App = () => (
   <Fragment>
@@ -15,16 +16,7 @@ const App = () => (
         <h1>Reactflix</h1>
       </Header>
       <Main>
-        <Videoslist>
-          {Array.from({ length: 10 }).map((item, index, array) => (
-            <Video key={index}>
-              <VideoThumb>
-                <PlayStyled />
-              </VideoThumb>
-              <VideoTitle> Titulo do video</VideoTitle>
-            </Video>
-          ))}
-        </Videoslist>
+        <Videoslist />
       </Main>
       <Footer>&copy; 2018</Footer>
     </Container>
@@ -52,35 +44,6 @@ const Header = styled.header`
 
 const Main = styled.main`
   min-height: calc(100% - 120px);
-  padding: 10px 5px;
-`;
-
-const Videoslist = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Video = styled.section`
-  flex: 1 1 300px;
-  margin: 0 5px;
-`;
-
-const VideoThumb = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #262626;
-  height: 150px;
-`;
-
-const PlayStyled = styled(Play)`
-  width: 50px;
-  height: 50px;
-  fill: #999;
-`;
-
-const VideoTitle = styled.h2`
-  font-size: 18px;
 `;
 
 const Footer = styled.footer`
