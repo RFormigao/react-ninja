@@ -21,7 +21,8 @@
   "standard": {
     "globals": [
       "it",
-      "expect"
+      "expect",
+      "firebase"
     ]
   },
   "devDependencies": {
@@ -56,6 +57,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "firebase": "^5.8.5",
     "milligram": "^1.3.0",
     "normalize.css": "^8.0.1",
     "preact": "^8.2.5",
