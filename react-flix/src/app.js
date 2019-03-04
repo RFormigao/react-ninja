@@ -7,6 +7,7 @@ import "normalize.css";
 import "milligram";
 
 import Videoslist from "components/videos-list";
+import VideoSingle from "components/video-single";
 
 const App = () => (
   <Fragment>
@@ -16,6 +17,7 @@ const App = () => (
         <h1>Reactflix</h1>
       </Header>
       <Main>
+        <VideoSingle />
         <Videoslist />
       </Main>
       <Footer>&copy; 2018</Footer>
