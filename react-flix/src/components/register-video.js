@@ -16,12 +16,27 @@ const RegisterVideo = ({ onSubmit }) => (
     <input type="text" id="title" name="title" />
 
     <button type="submit">Cadastrar</button>
+
+    <ButtonClose type="button">&times;</ButtonClose>
   </Form>
 );
 
 const Form = styled.form`
   width: 70%;
   margin: 15px auto;
+  position: relative;
+`;
+
+const ButtonClose = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0;
+  padding: 0;
+  width: 38px;
+  line-height: 1;
+  font-size: 20px;
+  font-weight: normal;
 `;
 
 const mapDispatchToProps = dispatch => ({

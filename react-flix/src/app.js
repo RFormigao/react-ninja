@@ -5,24 +5,23 @@ import styled, { createGlobalStyle } from "styled-components";
 
 import "normalize.css";
 import "milligram";
-
-import Videoslist from "components/videos-list";
-import VideoSingle from "components/video-single";
+import Header from "components/header";
 import RegisterVideo from "components/register-video";
+import VideoSingle from "components/video-single";
+import Videoslist from "components/videos-list";
+import Footer from "components/footer";
 
 const App = () => (
   <Fragment>
     <GlobalStyle />
     <Container>
-      <Header>
-        <h1>Reactflix</h1>
-      </Header>
+      <Header />
       <Main>
         <RegisterVideo />
         <VideoSingle />
         <Videoslist />
       </Main>
-      <Footer>&copy; 2018</Footer>
+      <Footer />
     </Container>
   </Fragment>
 );
@@ -37,25 +36,8 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const Header = styled.header`
-  background-color: #262626;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 20px;
-`;
-
 const Main = styled.main`
   min-height: calc(100% - 120px);
-`;
-
-const Footer = styled.footer`
-  background-color: #333;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default App;
