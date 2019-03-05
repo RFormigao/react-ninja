@@ -1,10 +1,12 @@
 "use strict";
 
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { addVideo } from "reducers/videos/action-creators";
 
-const RegisterVideo = () => (
-  <Form>
+const RegisterVideo = ({ onSubmit }) => (
+  <Form onSubmit={onSubmit}>
     <h2>Cadastrar vídeo</h2>
 
     <label htmlFor="id">ID do vídeo</label>
@@ -22,4 +24,20 @@ const Form = styled.form`
   margin: 15px auto;
 `;
 
-export default RegisterVideo;
+const mapDispatchToProps = dispatch => ({
+  onSubmit: e => {
+    e.preventDefault();
+
+    const {
+      id: { value: id },
+      title: { value: title }
+    } = e.target;
+
+    dispatch(addVideo({ id, title }));
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegisterVideo);
