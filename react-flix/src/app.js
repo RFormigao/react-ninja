@@ -1,6 +1,8 @@
 "use strict";
 
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
+
 import styled, { createGlobalStyle } from "styled-components";
 
 import "normalize.css";
@@ -11,13 +13,13 @@ import VideoSingle from "components/video-single";
 import Videoslist from "components/videos-list";
 import Footer from "components/footer";
 
-const App = () => (
+const App = ({ isRegisterVideoFormOpened }) => (
   <Fragment>
     <GlobalStyle />
     <Container>
       <Header />
       <Main>
-        <RegisterVideo />
+        {isRegisterVideoFormOpened && <RegisterVideo />}
         <VideoSingle />
         <Videoslist />
       </Main>
@@ -40,4 +42,8 @@ const Main = styled.main`
   min-height: calc(100% - 120px);
 `;
 
-export default App;
+const mapStateToProps = state => ({
+  isRegisterVideoFormOpened: state.ui.isRegisterVideoFormOpened
+});
+
+export default connect(mapStateToProps)(App);
