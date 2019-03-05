@@ -12,6 +12,9 @@ import RegisterVideo from "components/register-video";
 import VideoSingle from "components/video-single";
 import Videoslist from "components/videos-list";
 import Footer from "components/footer";
+import { headerHeight } from "utils/constants";
+import { footerHeight } from "utils/constants";
+
 import { fetchVideos } from "reducers/videos/action-creators";
 
 class App extends PureComponent {
@@ -20,7 +23,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const { isRegisterVideoFormOpened } = this.props;
+    const { isRegisterVideoFormOpened, videoSingleId, videos } = this.props;
     return (
       <Fragment>
         <GlobalStyle />
@@ -28,7 +31,12 @@ class App extends PureComponent {
           <Header />
           <Main>
             {isRegisterVideoFormOpened && <RegisterVideo />}
-            <VideoSingle />
+            {videoSingleId && (
+              <VideoSingle
+                id={videoSingleId}
+                title={videos[videoSingleId].title}
+              />
+            )}
             <Videoslist />
           </Main>
           <Footer />
@@ -49,11 +57,13 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-  min-height: calc(100% - 120px);
+  min-height: calc(100% - ${headerHeight} - ${footerHeight});
 `;
 
 const mapStateToProps = state => ({
-  isRegisterVideoFormOpened: state.ui.isRegisterVideoFormOpened
+  isRegisterVideoFormOpened: state.ui.isRegisterVideoFormOpened,
+  videoSingleId: state.videoSingle,
+  videos: state.videos
 });
 
 const mapDispatchToProps = {
