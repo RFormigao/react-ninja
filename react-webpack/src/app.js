@@ -1,7 +1,11 @@
 "use strict";
 
-function sum(a, b) {
-  return a + b;
-}
+import React from "react";
 
-module.exports = sum;
+var Title = React.createClass({
+  render: function() {
+    return React.createElement("h1", null, "Titulo");
+  }
+});
+
+export default Title;
