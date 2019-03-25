@@ -20,6 +20,14 @@ module.exports = {
   plugins: [new webpack.HotModuleReplacementPlugin()],
 
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        include: /src/,
+        loader: "standard"
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
