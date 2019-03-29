@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1553653520571" clover="3.2.0">
-  <project timestamp="1553653520571" name="All files">
-    <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="6" coveredelements="6" complexity="0" loc="5" ncloc="5" packages="1" files="1" classes="1">
+<coverage generated="1553825015728" clover="3.2.0">
+  <project timestamp="1553825015728" name="All files">
+    <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2" elements="8" coveredelements="8" complexity="0" loc="4" ncloc="4" packages="1" files="1" classes="1">
       <file name="map.js" path="/Users/rformigao/development/courses-app/react-ninja/jest-in-practice/src/map/map.js">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="7" count="11" type="stmt"/>
-        <line num="8" count="11" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
       </file>
     </metrics>
   </project>

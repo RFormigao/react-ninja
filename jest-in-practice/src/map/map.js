@@ -1,12 +1,9 @@
 "use strict";
 
-export default (array, func) => {
+const map = (arr = [], func = item => item) => {
   let newArray = [];
-
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    newArray.push(func(element, i, array));
-  }
-
+  for (let i = 0; i < arr.length; i++) newArray.push(func(arr[i], i, arr));
   return newArray;
 };
+
+export default map;
