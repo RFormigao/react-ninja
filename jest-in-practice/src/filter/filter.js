@@ -5,8 +5,7 @@ const filter = (arr = [], func = item => item) => {
 
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
-    const result = func(element, i, arr);
-    if (result) newArr.push(result);
+    if (func(element, i, arr)) newArr.push(element);
   }
 
   return newArr;
