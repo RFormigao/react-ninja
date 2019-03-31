@@ -1,7 +1,7 @@
 "use strict";
 
 const map = (arr = [], func = item => item) => {
-  return (function mapInternal(arrayInternal, counter = 0) {
+  return (function mapInternal(arrayInternal, counter) {
     const [head, ...tail] = arrayInternal;
 
     return arrayInternal.length === 0
