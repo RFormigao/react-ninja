@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "cross-env NODE_ENV=producction webpack --progress --config webpack.prod.config -p"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -8,11 +9,20 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier-standard": "^9.1.1",
+    "raw-loader": "^2.0.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "standard": "^12.0.1",
     "standard-loader": "^4.0.0",
+    "style-loader": "^0.23.1",
     "webpack": "^1.15.0",
-    "webpack-dev-server": "^1.16.5"
+    "webpack-dev-server": "^1.16.5",
+    "webpack-jarvis": "^0.3.2"
   },
   "dependencies": {
     "react": "^15.4.2",
