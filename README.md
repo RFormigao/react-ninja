@@ -1,1 +1,1 @@
-# redux-course
+# react-ninja course projects
